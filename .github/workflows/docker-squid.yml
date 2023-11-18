@@ -43,7 +43,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: ${{ vars.AWS_REGION }}
-          role-to-assume: ${{ vars.IDENTITY_ROLE }}
+          role-to-assume: secrets.IDENTITY_ROLE
           role-session-name: ${{ vars.ROLE_SESSION_NAME }}
 
       - name: AWS Credentials Assume
