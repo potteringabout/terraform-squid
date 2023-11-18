@@ -1,0 +1,61 @@
+name: Deploy to Squid to ECR
+
+on:
+  workflow_dispatch:
+    #checkov:skip=CKV_GHA_7:Deliberately added input parameters for specfic deployments
+    inputs:
+      environment:
+        type: environment
+        description: Select the environment
+      TAG:
+        description: "Squid Image TAG"
+        required: true
+        type: string
+      ROLE_SESSION_NAME:
+        description: "Role session name"
+        required: false
+        type: string
+        default: ghmanual
+jobs:
+  pull-push:
+
+    name: Pull Image
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Pull image from docker
+        run: |
+          docker pull ubuntu/squid:${{ inputs.TAG }}
+
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: vars.AWS_REGION
+          role-to-assume: vars.IDENTITY_ROLE
+          role-duration-seconds: vars.ROLE_DURATION_SECONDS
+          role-session-name: vars.ROLE_SESSION_NAME
+
+      - name: AWS Credentials Assume
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: vars.AWS_REGION
+          role-to-assume: vars.TARGET_ROLE
+          role-session-name: vars.ROLE_SESSION_NAME
+          role-chaining: true
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      #- name: Build, tag, and push image to Amazon ECR
+      #  env:
+      #    ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+     #     ECR_REPOSITORY: docker_nodejs_demo
+      #    IMAGE_TAG: nodejs_demo_image
+      #  run: |
+      #    docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+      #    docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
