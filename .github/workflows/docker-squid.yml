@@ -57,18 +57,19 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
-        #with:
-        #  aws-region: us-east-2
-        #  aws-access-key-id: ${{ steps.creds.outputs.aws-access-key-id }}
-        #  aws-secret-access-key: ${{ steps.creds.outputs.aws-secret-access-key }}
-        #  aws-session-token: ${{ steps.creds.outputs.aws-session-token }}
-        #  role-to-assume: arn:aws:iam::123456789100:role/my-other-github-actions-role
+
+      - name: Build, tag, and push docker image to Amazon ECR
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: squid
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          #docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:${{ inputs.TAG }}
 
       #- name: Build, tag, and push image to Amazon ECR
       #  env:
       #    ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-     #     ECR_REPOSITORY: docker_nodejs_demo
-      #    IMAGE_TAG: nodejs_demo_image
-      #  run: |
+       #  run: |
       #    docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
       #    docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
