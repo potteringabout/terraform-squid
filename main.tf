@@ -1,6 +1,6 @@
 module "squid_ecr" {
   source   = "./modules/ecr"
-  ecr_name = "${var.project}-squid"
+  ecr_name = "squid"
   kms_key  = aws_kms_key.key.arn
 }
 
