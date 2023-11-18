@@ -1,11 +1,12 @@
-module "mod1" {
-  source             = "./modules/mod1"
-  my_favourite_key   = "/${var.project}/${var.environment}/food"
-  my_favourite_value = var.food
+module "squid_ecr" {
+  source   = "./modules/ecr"
+  ecr_name = "${var.project}-squid"
+  kms_key  = aws_kms_key.key.arn
 }
 
-module "mod2" {
-  source             = "./modules/mod2"
-  my_favourite_key   = "/${var.project}/${var.environment}/colour"
-  my_favourite_value = var.colour
+
+resource "aws_kms_key" "key" {
+  description             = "ECR Key"
+  deletion_window_in_days = 10
+  enable_key_rotation     = true
 }
