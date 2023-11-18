@@ -34,17 +34,17 @@ jobs:
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: vars.AWS_REGION
-          role-to-assume: vars.IDENTITY_ROLE
-          role-duration-seconds: vars.ROLE_DURATION_SECONDS
-          role-session-name: vars.ROLE_SESSION_NAME
+          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: ${{ vars.IDENTITY_ROLE }}
+          role-duration-seconds: ${{ vars.ROLE_DURATION_SECONDS }}
+          role-session-name: ${{ vars.ROLE_SESSION_NAME }}
 
       - name: AWS Credentials Assume
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: vars.AWS_REGION
-          role-to-assume: vars.TARGET_ROLE
-          role-session-name: vars.ROLE_SESSION_NAME
+          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: ${{ vars.TARGET_ROLE }}
+          role-session-name: ${{ vars.ROLE_SESSION_NAME }}
           role-chaining: true
 
       - name: Login to Amazon ECR
