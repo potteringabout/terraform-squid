@@ -16,6 +16,14 @@ on:
         required: false
         type: string
         default: ghmanual
+
+permissions:
+  id-token: write
+  contents: read
+  issues: write
+  pull-requests: write
+  deployments: write
+
 jobs:
   pull-push:
     name: "pull-push-squid-${{ inputs.environment }}"
