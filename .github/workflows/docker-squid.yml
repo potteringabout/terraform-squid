@@ -44,7 +44,6 @@ jobs:
         with:
           aws-region: ${{ vars.AWS_REGION }}
           role-to-assume: ${{ vars.IDENTITY_ROLE }}
-          role-duration-seconds: ${{ vars.ROLE_DURATION_SECONDS }}
           role-session-name: ${{ vars.ROLE_SESSION_NAME }}
 
       - name: AWS Credentials Assume
