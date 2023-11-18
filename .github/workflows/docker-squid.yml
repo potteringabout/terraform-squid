@@ -36,16 +36,6 @@ jobs:
         run: |
           docker pull ubuntu/squid:${{ inputs.TAG }}
 
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Get TF variables from GH environment
-      - name: Get TF vars
-        uses: ./.github/actions/get-vars
-        with:
-          CONFIG: ${{ vars.CONFIG }}
-
-
       - name: Check out code
         uses: actions/checkout@v4
 
