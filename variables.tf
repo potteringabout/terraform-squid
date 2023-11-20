@@ -77,3 +77,13 @@ variable "project_full" {
 }
 
 // Application Variables
+
+variable "squid_container_image" {
+  type        = string
+  description = "The Squid container to use"
+}
+
+variable "squid_service_name" {
+  type        = string
+  description = "The Squid service name"
+}
