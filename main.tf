@@ -52,11 +52,28 @@ resource "aws_iam_role_policy_attachment" "squid_execution_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
+data "aws_iam_policy_document" "ecs_task_assume_role_policy" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["ecs-tasks.amazonaws.com"]
+    }
+
+  }
+}
+
+resource "aws_iam_role" "squid_task" {
+  name               = "squid-task-role"
+  path               = "/"
+  assume_role_policy = data.aws_iam_policy_document.ecs_task_assume_role_policy.json
+}
 
 module "squid_task" {
   source                = "./modules/ecs-task"
   task_family           = "squid"
-  task_role_arn         = "squid"
+  task_role_arn         = aws_iam_role.squid_task.arn
   execution_role_arn    = aws_iam_role.squid_execution.arn
   container_definitions = local.container_definitions
 
