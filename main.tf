@@ -57,7 +57,7 @@ module "squid_task" {
   source                = "./modules/ecs-task"
   task_family           = "squid"
   task_role_arn         = "squid"
-  execution_role_arn    = aws_iam_role_policy_attachment.squid_execution_policy.arn
+  execution_role_arn    = aws_iam_role.squid_execution.arn
   container_definitions = local.container_definitions
 
 }
