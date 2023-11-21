@@ -78,3 +78,17 @@ module "squid_task" {
   container_definitions = local.container_definitions
 
 }
+
+resource "aws_kms_key" "ecs_key" {
+  description             = "ECS Key"
+  deletion_window_in_days = 10
+  enable_key_rotation     = true
+}
+
+module "squid_cluster" {
+  source                               = "./modules/ecs-cluster"
+  cluster_name                         = "proxy-services"
+  cluster_log_group_name               = "/proxy-services"
+  cluster_execution_encryption_key_arn = aws_kms_key.ecs_key.arn
+
+}

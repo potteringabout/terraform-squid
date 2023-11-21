@@ -1,3 +1,3 @@
-/*output "favourite_id" {
-  value = aws_ssm_parameter.favourite.id
-}*/
+output "task_arn" {
+  value = aws_ecs_task_definition.task.arn
+}
