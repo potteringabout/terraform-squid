@@ -100,6 +100,21 @@ resource "aws_kms_key_policy" "ecs_key_policy" {
         ]
         Effect = "Allow"
         Principal = {
+          "Service" : "logs.amazonaws.com"
+        }
+        Resource = "*"
+        Sid      = "Enable CloudWatch Log Encryption"
+      },
+      {
+        Action = [
+          "kms:Encrypt*",
+          "kms:Decrypt*",
+          "kms:ReEncrypt*",
+          "kms:GenerateDataKey*",
+          "kms:Describe*"
+        ]
+        Effect = "Allow"
+        Principal = {
           "Service" : "logs.eu-west-2.amazonaws.com"
         }
         Resource = "*"
