@@ -6,6 +6,10 @@ resource "aws_ecs_service" "service" {
   #iam_role        = aws_iam_role.foo.arn
   # depends_on      = [aws_iam_role_policy.foo]
 
+  network_configuration {
+    subnets = ["subnet-04f97c9cceed57385", "subnet-096691818e717fd28", "subnet-037e3aff7e6b5b2c0"]
+  }
+
   /*ordered_placement_strategy {
     type  = "binpack"
     field = "cpu"
