@@ -126,3 +126,11 @@ module "squid_cluster" {
   cluster_execution_encryption_key_arn = aws_kms_key.ecs_key.arn
 
 }
+
+module "squid_service" {
+  source           = "./modules/ecs-service"
+  ecs_service_name = "squid"
+  ecs_cluster_id   = module.squid_cluster.cluster_arn
+  ecs_task_def     = module.squid_task.task_arn
+
+}
