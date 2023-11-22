@@ -21,7 +21,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_ecs_service.mongo](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service) | resource |
+| [aws_ecs_service.service](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service) | resource |
 
 ## Inputs
 
@@ -35,5 +35,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_task_arn"></a> [task\_arn](#output\_task\_arn) | n/a |
+| <a name="output_service_arn"></a> [service\_arn](#output\_service\_arn) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

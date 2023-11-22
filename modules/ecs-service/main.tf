@@ -1,4 +1,4 @@
-resource "aws_ecs_service" "mongo" {
+resource "aws_ecs_service" "service" {
   name            = var.ecs_service_name
   cluster         = var.ecs_cluster_id
   task_definition = var.ecs_task_def
