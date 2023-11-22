@@ -85,6 +85,31 @@ resource "aws_kms_key" "ecs_key" {
   enable_key_rotation     = true
 }
 
+resource "aws_kms_key_policy" "ecs_key_policy" {
+  key_id = aws_kms_key.ecs_key.id
+  policy = jsonencode({
+    Id = "logs"
+    Statement = [
+      {
+        Action = [
+          "kms:Encrypt*",
+          "kms:Decrypt*",
+          "kms:ReEncrypt*",
+          "kms:GenerateDataKey*",
+          "kms:Describe*"
+        ]
+        Effect = "Allow"
+        Principal = {
+          "Service" : "logs.eu-west-2.amazonaws.com"
+        }
+        Resource = "*"
+        Sid      = "Enable CloudWatch Log Encryption"
+      }
+    ]
+    Version = "2012-10-17"
+  })
+}
+
 module "squid_cluster" {
   source                               = "./modules/ecs-cluster"
   cluster_name                         = "proxy-services"
