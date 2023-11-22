@@ -106,19 +106,13 @@ resource "aws_kms_key_policy" "ecs_key_policy" {
         Sid      = "Enable CloudWatch Log Encryption"
       },
       {
-        Action = [
-          "kms:Encrypt*",
-          "kms:Decrypt*",
-          "kms:ReEncrypt*",
-          "kms:GenerateDataKey*",
-          "kms:Describe*"
-        ]
-        Effect = "Allow"
-        Principal = {
-          "Service" : "logs.eu-west-2.amazonaws.com"
-        }
-        Resource = "*"
-        Sid      = "Enable CloudWatch Log Encryption"
+        "Sid"    = "Enable IAM User Permissions",
+        "Effect" = "Allow",
+        "Principal" = {
+          "AWS" : "arn:aws:iam::680805529666:root"
+        },
+        "Action"   = "kms:*",
+        "Resource" = "*"
       }
     ]
     Version = "2012-10-17"
