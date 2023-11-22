@@ -35,5 +35,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_service_arn"></a> [service\_arn](#output\_service\_arn) | n/a |
+| <a name="output_service_id"></a> [service\_id](#output\_service\_id) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

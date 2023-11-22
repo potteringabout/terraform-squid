@@ -1,3 +1,3 @@
-output "service_arn" {
-  value = aws_ecs_service.service.arn
+output "service_id" {
+  value = aws_ecs_service.service.id
 }
