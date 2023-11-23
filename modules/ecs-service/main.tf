@@ -1,8 +1,12 @@
 resource "aws_ecs_service" "service" {
-  name            = var.ecs_service_name
-  cluster         = var.ecs_cluster_id
-  task_definition = var.ecs_task_def
-  desired_count   = 3
+  name                               = var.ecs_service_name
+  cluster                            = var.ecs_cluster_id
+  task_definition                    = var.ecs_task_def
+  desired_count                      = 2
+  deployment_minimum_healthy_percent = 50
+  deployment_maximum_percent         = 200
+  launch_type                        = "FARGATE"
+  scheduling_strategy                = "REPLICA"
   #iam_role        = aws_iam_role.foo.arn
   # depends_on      = [aws_iam_role_policy.foo]
 
