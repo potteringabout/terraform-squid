@@ -89,11 +89,11 @@ variable "squid_service_name" {
 }
 
 variable "ingress" {
-  type = bool
+  type    = bool
   default = true
 }
 
 variable "egress" {
-  type = bool
+  type    = bool
   default = true
 }

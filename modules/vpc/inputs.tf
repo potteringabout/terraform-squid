@@ -1,6 +1,6 @@
 
 variable "vpc_cidr" {
-  type = string
+  type    = string
   default = "10.0.0.0/22"
 }
 /*
@@ -11,11 +11,11 @@ variable "subnets" {
 }*/
 
 variable "egress" {
-  type = bool
-  default = false  
+  type    = bool
+  default = false
 }
 
 variable "ingress" {
-  type = bool
-  default = false  
+  type    = bool
+  default = false
 }

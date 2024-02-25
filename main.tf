@@ -18,8 +18,8 @@ locals {
 }
 
 module "network" {
-  source = "./modules/vpc"
-  egress = var.egress
+  source  = "./modules/vpc"
+  egress  = var.egress
   ingress = var.ingress
 }
 
