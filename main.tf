@@ -17,6 +17,12 @@ locals {
   ]
 }
 
+module "network" {
+  source = "./modules/vpc"
+  egress = var.egress
+  ingress = var.ingress
+}
+
 module "squid_ecr" {
   source   = "./modules/ecr"
   ecr_name = "squid"

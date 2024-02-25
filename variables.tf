@@ -87,3 +87,13 @@ variable "squid_service_name" {
   type        = string
   description = "The Squid service name"
 }
+
+variable "ingress" {
+  type = bool
+  default = true
+}
+
+variable "egress" {
+  type = bool
+  default = true
+}
