@@ -21,7 +21,7 @@ locals {
       cidr = "10.0.1.128/25"
       availability_zone = "${local.region}b"
     },
-  ],
+  ]
   data_subnets = [
     {
       cidr = "10.0.2.0/25"
