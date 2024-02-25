@@ -48,7 +48,7 @@ resource "aws_subnet" "subnets" {
   for_each = local.subnets
 
   vpc_id     = aws_vpc.main.id
-  availability_zone = each.value.availability_zone
+  availability_zone = each.value["availability_zone"]
   
   
   # each.value here is a value from var.vpcs
