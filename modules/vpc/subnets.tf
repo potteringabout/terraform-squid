@@ -2,16 +2,18 @@ locals {
   vpc_cidr = "10.0.0.0/22"
   region = "eu-west-1"
 
-  access_subnets = [
-    {
+  access_subnets = {
+    "access01" = {
       cidr = "10.0.0.0/25"
       availability_zone = "${local.region}a"
-    },
-    {
+    }
+    "access02" = {
       cidr = "10.0.1.128/25"
       availability_zone = "${local.region}b"
-    },
-  ]
+    }
+  }
+    
+  
   app_subnets = [
     {
       cidr = "10.0.1.0/25"
