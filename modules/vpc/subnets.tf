@@ -38,7 +38,7 @@ locals {
   subnets = flatten([
     for subnet_type, subnet_defs  in local.subs: 
       [
-        for idx, subnet_def in subnet_defs: merge(subnet_def, {type = subnet_type, name = "${subnet_type}${idxi+1}"})
+        for idx, subnet_def in subnet_defs: merge(subnet_def, {type = subnet_type, name = "${subnet_type}${idx+1}"})
       ]
   ])
   
