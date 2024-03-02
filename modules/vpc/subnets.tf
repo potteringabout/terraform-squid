@@ -46,7 +46,7 @@ locals {
     for network_key, network in local.network : [
       for subnet_key, subnet in network.subnets : {
         subnet_name       = "${network_key}${subnet_key}"
-        cidr_block        = subnet.cidr_block
+        cidr_block        = subnet.cidr
         availability_zone = subnet.availability_zone
       }
     ]
