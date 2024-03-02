@@ -46,7 +46,7 @@ locals {
     for network_key, network in local.network : [
       for subnet_key, subnet in network.subnets : {
         subnet_name       = "${network_key}${subnet_key}"
-        cidr_block        = subnet.cidr
+        cidr              = subnet.cidr
         availability_zone = subnet.availability_zone
       }
     ]
@@ -62,6 +62,10 @@ resource "aws_subnet" "subnet" {
   })
 
   vpc_id            = aws_vpc.main.id
-  availability_zone = each.value.subnet_key
-  cidr_block        = each.value.cidr_block
+  availability_zone = each.value.availability_zone
+  cidr_block        = each.value.cidr
+
+  tags = {
+    "Name" : each.value.subnet_name
+  }
 }
