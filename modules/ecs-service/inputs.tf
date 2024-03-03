@@ -13,3 +13,8 @@ variable "ecs_task_def" {
   type        = string
   description = "ECS Task Definition"
 }
+
+variable "ecs_subnets" {
+  type        = list(string)
+  description = "ECS subnets"
+}
