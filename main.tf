@@ -139,5 +139,5 @@ module "squid_service" {
   ecs_service_name = "squid"
   ecs_cluster_id   = module.squid_cluster.cluster_arn
   ecs_task_def     = module.squid_task.task_arn
-
+  ecs_subnets      = module.network.application_subnet_ids
 }
