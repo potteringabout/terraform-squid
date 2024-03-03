@@ -77,5 +77,5 @@ runs:
     # Plan changes to environment
     - name: Terraform Plan
       id: plan
-      run: terraform destroy -var-file="./variables/input.tfvars.json" -var "deployment_repo=${{ github.repositoryUrl }}" -no-color
+      run: terraform destroy -var-file="./variables/input.tfvars.json" -var "deployment_repo=${{ github.repositoryUrl }}" -no-color -auto-approve
       shell: bash
