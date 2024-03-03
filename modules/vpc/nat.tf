@@ -1,7 +1,7 @@
 
 locals {
   ingress_subnets = {
-    for subnet in local.network_subnets : subnet.subnet_name => subnet if subnet.zone == "access" && var.var.ingress
+    for subnet in local.network_subnets : subnet.subnet_name => subnet if subnet.zone == "access" && var.ingress
   }
 }
 
