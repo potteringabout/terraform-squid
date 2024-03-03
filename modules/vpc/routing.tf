@@ -55,7 +55,6 @@ locals {
   }
 }
 
-
 resource "aws_route_table_association" "app" {
   for_each       = tomap(var.egress ? local.app_route_table_association_egress : local.app_route_table_association_noegress)
   subnet_id      = aws_subnet.subnet[each.key].id
