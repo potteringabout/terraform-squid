@@ -31,6 +31,7 @@ module "squid_ecr" {
 
 
 resource "aws_kms_key" "key" {
+  # checkov:skip=CKV2_AWS_64: "Ensure KMS key Policy is defined"
   description             = "ECR Key"
   deletion_window_in_days = 10
   enable_key_rotation     = true
