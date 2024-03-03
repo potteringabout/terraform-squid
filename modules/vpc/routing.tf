@@ -23,15 +23,23 @@ resource "aws_route_table" "app" {
 
   vpc_id = aws_vpc.main.id
 
-  dynamic "route" {
+  /*dynamic "route" {
     # We only add the block if egress is true, and we point the internet route
     # at the nat gw
     for_each = var.egress ? [each.value.subnet_name] : []
     content {
       cidr_block     = "0.0.0.0/0"
-      nat_gateway_id = aws_nat_gateway.nat[each.value].id
+      nat_gateway_id = aws_nat_gateway.nat[each.value.subnet_name].id
     }
-  }
+  }*/
+}
+
+resource "aws_route" "nat" {
+  for_each = tomap(var.egress ? local.access_subnets : {})
+
+  route_table_id         = aws_route_table.app[each.value.subnet_name].id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat[each.value.subnet_name].id
 }
 
 locals {
