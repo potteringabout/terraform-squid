@@ -9,6 +9,7 @@ jobs:
   tag:
     name: tag
     permissions:
+      # checkov:skip=CKV2_GHA_1: "Ensure top-level permissions are not set to write-all"
       #id-token: write
       contents: write
       issues: write
