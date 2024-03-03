@@ -7,7 +7,7 @@ locals {
 
 resource "aws_eip" "ip" {
   # checkov:skip=CKV2_AWS_19: "Ensure that all EIP addresses allocated to a VPC are attached to EC2 instances"
-  domain   = aws_vpc.main.id
+  domain   = "vpc"
   for_each = tomap(local.ingress_subnets)
 }
 
