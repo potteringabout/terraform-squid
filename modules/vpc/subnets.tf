@@ -3,7 +3,7 @@ resource "aws_subnet" "subnet" {
   # where each key is unique. We'll combine the network and subnet keys to
   # produce a single unique key per instance.
   for_each = tomap({
-    for subnet in local.network_subnets : subnet.subnet_name => subnet if subnet.zone == "access"
+    for subnet in local.network_subnets : subnet.subnet_name => subnet
   })
 
   vpc_id            = aws_vpc.main.id

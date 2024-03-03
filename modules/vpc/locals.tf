@@ -55,5 +55,8 @@ locals {
     ]
   ])
 
+  access_subnets = {
+    for subnet in local.network_subnets : subnet.subnet_name => subnet if subnet.zone == "access"
+  }
 
 }
