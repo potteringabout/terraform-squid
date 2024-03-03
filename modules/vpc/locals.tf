@@ -3,11 +3,11 @@ locals {
   network = {
     access = {
       subnets = {
-        01 = {
+        1 = {
           cidr              = "10.0.0.0/25"
           availability_zone = "${var.region}a"
         }
-        02 = {
+        2 = {
           cidr              = "10.0.0.128/25"
           availability_zone = "${var.region}b"
         }
@@ -15,11 +15,11 @@ locals {
     }
     data = {
       subnets = {
-        01 = {
+        1 = {
           cidr              = "10.0.2.0/25"
           availability_zone = "${var.region}a"
         }
-        02 = {
+        2 = {
           cidr              = "10.0.2.128/25"
           availability_zone = "${var.region}b"
         }
@@ -27,11 +27,11 @@ locals {
     }
     app = {
       subnets = {
-        01 = {
+        1 = {
           cidr              = "10.0.1.0/25"
           availability_zone = "${var.region}a"
         }
-        02 = {
+        2 = {
           cidr              = "10.0.1.128/25"
           availability_zone = "${var.region}b"
         }
@@ -51,6 +51,7 @@ locals {
         cidr              = subnet.cidr
         availability_zone = subnet.availability_zone
         zone              = network_key
+        subnet_number     = subnet_key
       }
     ]
   ])
