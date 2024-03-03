@@ -7,10 +7,10 @@ locals {
           cidr              = "10.0.0.0/25"
           availability_zone = "${var.region}a"
         }
-        /*2 = {
+        2 = {
           cidr              = "10.0.0.128/25"
           availability_zone = "${var.region}b"
-        }*/
+        }
       }
     }
     data = {
@@ -19,10 +19,10 @@ locals {
           cidr              = "10.0.2.0/25"
           availability_zone = "${var.region}a"
         }
-        /*2 = {
+        2 = {
           cidr              = "10.0.2.128/25"
           availability_zone = "${var.region}b"
-        }*/
+        }
       }
     }
     app = {
@@ -31,10 +31,10 @@ locals {
           cidr              = "10.0.1.0/25"
           availability_zone = "${var.region}a"
         }
-        /*2 = {
+        2 = {
           cidr              = "10.0.1.128/25"
           availability_zone = "${var.region}b"
-        }*/
+        }
       }
     }
 
