@@ -19,7 +19,7 @@ resource "aws_route_table_association" "access" {
 # application subnet pointing at the nat gw in the same zone.
 # If egress is not set we just create a single route table for all app subnets
 resource "aws_route_table" "app" {
-  for_each = tomap(var.egress ? local.access_subnets : { "app" : 1 })
+  for_each = tomap(var.egress ? local.access_subnets : { "app" : {} })
 
   vpc_id = aws_vpc.main.id
 
