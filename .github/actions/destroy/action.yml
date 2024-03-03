@@ -77,11 +77,5 @@ runs:
     # Plan changes to environment
     - name: Terraform Plan
       id: plan
-      run: terraform destroy -var-file="./variables/input.tfvars.json" -var "deployment_repo=${{ github.repositoryUrl }}" -detailed-exitcode -no-color
-      shell: bash
-      continue-on-error: true
-
-    - name: Check for Terraform Destroy Failure
-      if: steps.plan.outputs.exitcode == 1
-      run: exit 1
+      run: terraform destroy -var-file="./variables/input.tfvars.json" -var "deployment_repo=${{ github.repositoryUrl }}" -no-color
       shell: bash
