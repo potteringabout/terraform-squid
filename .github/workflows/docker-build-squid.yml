@@ -58,10 +58,10 @@ jobs:
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: squid
-          IMAGE_TAG: ${{ github.sha }}
+          #IMAGE_TAG: ${{ github.sha }}
         run: |
           cd app/squid
           #docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
           #docker tag ubuntu/squid:${{ inputs.TAG }} $REGISTRY/$REPOSITORY:${{ inputs.TAG }}
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker build -t $REGISTRY/$REPOSITORY:${{ inputs.TAG }} .
           docker push $REGISTRY/$REPOSITORY
