@@ -18,7 +18,3 @@ variable "target_group" {
     port = number
   })
 }
-
-variable "vpc_id" {
-  type = string
-}
