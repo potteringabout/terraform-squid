@@ -18,3 +18,12 @@ variable "ecs_subnets" {
   type        = list(string)
   description = "ECS subnets"
 }
+
+variable "load_balancer" {
+  type = object({
+    target_group_arn = string
+    container_name   = string
+    container_port   = number
+  })
+
+}

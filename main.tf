@@ -13,8 +13,20 @@ locals {
           hostPort      = 3128
         }
       ]
+      healthCheck = {
+        command     = ["CMD-SHELL", "curl --proxy dsadas -f http://localhost:8081/ || exit 1"]
+        interval    = 30
+        timeout     = 5
+        startPeriod = 10
+        retries     = 3
+      }
+
     }
   ]
+  alb = {
+    name = "squid"
+  }
+
 }
 
 module "network" {
@@ -134,10 +146,26 @@ module "squid_cluster" {
 
 }
 
+module "squid_alb" {
+  source     = "./modules/alb"
+  vpc_id     = module.network.vpc_id
+  subnet_ids = module.network.access_subnet_ids
+  alb        = local.alb
+  target_group = {
+    name = "squid"
+    port = 3128
+  }
+}
+
 module "squid_service" {
   source           = "./modules/ecs-service"
   ecs_service_name = "squid"
   ecs_cluster_id   = module.squid_cluster.cluster_arn
   ecs_task_def     = module.squid_task.task_arn
   ecs_subnets      = module.network.application_subnet_ids
+  load_balancer = {
+    container_name   = "squid"
+    container_port   = 3128
+    target_group_arn = module.squid_alb.target_group_arn
+  }
 }

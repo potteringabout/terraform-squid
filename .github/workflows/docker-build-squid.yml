@@ -61,6 +61,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           cd app/squid
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
+          #docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
           #docker tag ubuntu/squid:${{ inputs.TAG }} $REGISTRY/$REPOSITORY:${{ inputs.TAG }}
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY

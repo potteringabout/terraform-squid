@@ -14,16 +14,18 @@ resource "aws_ecs_service" "service" {
     subnets = var.ecs_subnets
   }
 
+  load_balancer {
+    target_group_arn = var.load_balancer["target_group_arn"]
+    container_name   = var.load_balancer["container_name"]
+    container_port   = var.load_balancer["container_port"]
+  }
+
   /*ordered_placement_strategy {
     type  = "binpack"
     field = "cpu"
   }
 
-  load_balancer {
-    target_group_arn = aws_lb_target_group.foo.arn
-    container_name   = "mongo"
-    container_port   = 8080
-  }*/
+  */
 
   /*placement_constraints {
     type       = "memberOf"
