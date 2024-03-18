@@ -154,6 +154,7 @@ module "squid_alb" {
   target_group = {
     name = "squid"
     port = 3128
+    id   = module.squid_service.service_id
   }
 }
 

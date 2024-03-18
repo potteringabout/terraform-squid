@@ -76,7 +76,6 @@ variable "project_full" {
   type        = string
 }
 
-// Application Variables
 
 variable "squid_container_image" {
   type        = string
