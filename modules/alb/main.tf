@@ -62,12 +62,6 @@ resource "aws_lb_target_group" "target_group" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "apitest" {
-  target_group_arn = aws_lb_target_group.target_group.arn
-  target_id        = var.target_group["id"]
-  port             = var.target_group["port"]
-}
-
 
 #Defines an HTTP Listener for the ALB
 resource "aws_lb_listener" "listener" {

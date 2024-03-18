@@ -16,6 +16,5 @@ variable "target_group" {
   type = object({
     name = string
     port = number
-    id   = string
   })
 }
