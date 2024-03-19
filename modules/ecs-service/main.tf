@@ -12,7 +12,7 @@ resource "aws_ecs_service" "service" {
 
   network_configuration {
     subnets         = var.ecs_subnets
-    security_groups = [aws_security_group.ecs.arn]
+    security_groups = [aws_security_group.ecs.id]
   }
 
   load_balancer {
@@ -43,7 +43,7 @@ resource "aws_security_group" "ecs" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_3128" {
   security_group_id            = aws_security_group.ecs.id
-  referenced_security_group_id = var.load_balancer["security_group_arn"]
+  referenced_security_group_id = var.load_balancer["security_group_id"]
   from_port                    = 3128
   ip_protocol                  = "tcp"
   to_port                      = 3128

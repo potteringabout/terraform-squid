@@ -165,10 +165,10 @@ module "squid_service" {
   ecs_task_def     = module.squid_task.task_arn
   ecs_subnets      = module.network.application_subnet_ids
   load_balancer = {
-    container_name     = "squid"
-    container_port     = 3128
-    target_group_arn   = module.squid_alb.target_group_arn
-    security_group_arn = module.squid_alb.security_group_arn
+    container_name    = "squid"
+    container_port    = 3128
+    target_group_arn  = module.squid_alb.target_group_arn
+    security_group_id = module.squid_alb.security_group_id
 
   }
 }

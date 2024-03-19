@@ -34,13 +34,13 @@ resource "aws_route_table" "app" {
   }
 }
 
-resource "aws_route" "nat" {
+/*resource "aws_route" "nat" {
   for_each = tomap(var.egress ? local.access_subnets : {})
 
   route_table_id         = aws_route_table.app[each.value.subnet_name].id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat[each.value.subnet_name].id
-}
+}*/
 
 locals {
   app_subnets = {

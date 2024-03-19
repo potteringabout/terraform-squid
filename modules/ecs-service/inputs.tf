@@ -26,10 +26,10 @@ variable "ecs_subnets" {
 
 variable "load_balancer" {
   type = object({
-    target_group_arn   = string
-    security_group_arn = string
-    container_name     = string
-    container_port     = number
+    target_group_arn  = string
+    security_group_id = string
+    container_name    = string
+    container_port    = number
   })
 
 }
