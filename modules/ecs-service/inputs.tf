@@ -14,6 +14,11 @@ variable "ecs_task_def" {
   description = "ECS Task Definition"
 }
 
+variable "vpc_id" {
+  type        = string
+  description = "VPC id"
+}
+
 variable "ecs_subnets" {
   type        = list(string)
   description = "ECS subnets"
@@ -21,9 +26,10 @@ variable "ecs_subnets" {
 
 variable "load_balancer" {
   type = object({
-    target_group_arn = string
-    container_name   = string
-    container_port   = number
+    target_group_arn   = string
+    security_group_arn = string
+    container_name     = string
+    container_port     = number
   })
 
 }

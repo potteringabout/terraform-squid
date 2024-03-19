@@ -23,7 +23,7 @@ resource "aws_route_table" "app" {
 
   vpc_id = aws_vpc.main.id
 
-  /*dynamic "route" {
+  dynamic "route" {
     # We only add the block if egress is true, and we point the internet route
     # at the nat gw
     for_each = var.egress ? [each.value.subnet_name] : []
@@ -31,7 +31,7 @@ resource "aws_route_table" "app" {
       cidr_block     = "0.0.0.0/0"
       nat_gateway_id = aws_nat_gateway.nat[each.value.subnet_name].id
     }
-  }*/
+  }
 }
 
 resource "aws_route" "nat" {

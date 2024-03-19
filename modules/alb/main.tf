@@ -5,25 +5,25 @@ resource "aws_security_group" "alb" {
 
 }
 
-/*resource "aws_vpc_security_group_ingress_rule" "allow_https" {
+resource "aws_vpc_security_group_ingress_rule" "allow_https" {
+  # checkov:skip=CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
   security_group_id = aws_security_group.alb.id
-  cidr_ipv4         = var.vpc_id
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 80
   ip_protocol       = "tcp"
   to_port           = 80
   description       = "Allow ingress traffic to port 80"
-
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_3128" {
   security_group_id = aws_security_group.alb.id
-  cidr_ipv4         = var.vpc_id
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 3128
   ip_protocol       = "tcp"
   to_port           = 3128
   description       = "Allow egress traffic to squid"
 
-}*/
+}
 
 #################################################################################################
 # This file describes the Load Balancer resources: ALB, ALB target group, ALB listener

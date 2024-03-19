@@ -22,6 +22,9 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_ecs_service.service](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service) | resource |
+| [aws_security_group.ecs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
+| [aws_vpc_security_group_egress_rule.allow_egress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_egress_rule) | resource |
+| [aws_vpc_security_group_ingress_rule.allow_3128](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
 
 ## Inputs
 
@@ -31,7 +34,8 @@ No modules.
 | <a name="input_ecs_service_name"></a> [ecs\_service\_name](#input\_ecs\_service\_name) | Name of ECS Service | `string` | n/a | yes |
 | <a name="input_ecs_subnets"></a> [ecs\_subnets](#input\_ecs\_subnets) | ECS subnets | `list(string)` | n/a | yes |
 | <a name="input_ecs_task_def"></a> [ecs\_task\_def](#input\_ecs\_task\_def) | ECS Task Definition | `string` | n/a | yes |
-| <a name="input_load_balancer"></a> [load\_balancer](#input\_load\_balancer) | n/a | <pre>object({<br>    target_group_arn = string<br>    container_name   = string<br>    container_port   = number<br>  })</pre> | n/a | yes |
+| <a name="input_load_balancer"></a> [load\_balancer](#input\_load\_balancer) | n/a | <pre>object({<br>    target_group_arn   = string<br>    security_group_arn = string<br>    container_name     = string<br>    container_port     = number<br>  })</pre> | n/a | yes |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | VPC id | `string` | n/a | yes |
 
 ## Outputs
 

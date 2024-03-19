@@ -11,7 +11,8 @@ resource "aws_ecs_service" "service" {
   # depends_on      = [aws_iam_role_policy.foo]
 
   network_configuration {
-    subnets = var.ecs_subnets
+    subnets         = var.ecs_subnets
+    security_groups = [aws_security_group.ecs.arn]
   }
 
   load_balancer {
@@ -31,4 +32,29 @@ resource "aws_ecs_service" "service" {
     type       = "memberOf"
     expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
   }*/
+}
+
+resource "aws_security_group" "ecs" {
+  name        = "ECS security group"
+  description = "SG for ECS service"
+  vpc_id      = var.vpc_id
+
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_3128" {
+  security_group_id            = aws_security_group.ecs.id
+  referenced_security_group_id = var.load_balancer["security_group_arn"]
+  from_port                    = 3128
+  ip_protocol                  = "tcp"
+  to_port                      = 3128
+  description                  = "Allow ingress traffic to port squid from ALB"
+
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_egress" {
+  security_group_id = aws_security_group.ecs.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = -1
+  description       = "Allow all egress"
+
 }
