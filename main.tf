@@ -13,8 +13,17 @@ locals {
           hostPort      = 3128
         }
       ]
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          awslogs-group         = "squid"
+          awslogs-region        = "eu-west-2"
+          awslogs-create-group  = "true"
+          awslogs-stream-prefix = "proxy"
+        }
+      }
       healthCheck = {
-        command     = ["CMD-SHELL", "curl --proxy dsadas -f http://localhost:8081/ || exit 1"]
+        command     = ["CMD-SHELL", "squidclient -h localhost cache_object://localhost/counters || exit 1"]
         interval    = 30
         timeout     = 5
         startPeriod = 10
