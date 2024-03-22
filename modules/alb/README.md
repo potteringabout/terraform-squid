@@ -32,7 +32,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_alb"></a> [alb](#input\_alb) | n/a | <pre>object({<br>    name = string<br>  })</pre> | n/a | yes |
+| <a name="input_alb"></a> [alb](#input\_alb) | n/a | <pre>object({<br>    name = string<br>    type = string<br>  })</pre> | n/a | yes |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | n/a | `list(string)` | n/a | yes |
 | <a name="input_target_group"></a> [target\_group](#input\_target\_group) | n/a | <pre>object({<br>    name = string<br>    port = number<br>  })</pre> | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | n/a | yes |

@@ -9,6 +9,7 @@ variable "vpc_id" {
 variable "alb" {
   type = object({
     name = string
+    type = string
   })
 }
 
