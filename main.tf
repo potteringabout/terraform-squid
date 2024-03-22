@@ -34,6 +34,7 @@ locals {
   ]
   alb = {
     name = "squid"
+    type = "network"
   }
 
 }

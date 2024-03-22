@@ -31,6 +31,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_3128" {
 
 #Defining the Application Load Balancer
 resource "aws_alb" "application_load_balancer" {
+  #checkov:skip=CKV_AWS_152: "Ensure that Load Balancer (Network/Gateway) has cross-zone load balancing enabled"
   #checkov:skip=CKV_AWS_150: "Ensure that Load Balancer has deletion protection enabled"
   #checkov:skip=CKV_AWS_91: "Ensure the ELBv2 (Application/Network) has access logging enabled"
   #checkov:skip=CKV_AWS_131: "Ensure that ALB drops HTTP headers"
@@ -38,7 +39,7 @@ resource "aws_alb" "application_load_balancer" {
   #checkov:skip=CKV2_AWS_28: "Ensure public facing ALB are protected by WAF"
   name               = var.alb["name"]
   internal           = false
-  load_balancer_type = "application"
+  load_balancer_type = var.alb["type"]
   subnets            = var.subnet_ids
   security_groups    = [aws_security_group.alb.id]
 }
