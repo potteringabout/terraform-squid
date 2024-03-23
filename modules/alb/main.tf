@@ -46,9 +46,10 @@ resource "aws_alb" "application_load_balancer" {
 
 #Defining the target group and a health check on the application
 resource "aws_lb_target_group" "target_group" {
-  name        = var.target_group["name"]
-  port        = var.target_group["port"]
-  protocol    = "HTTP"
+  name = var.target_group["name"]
+  port = var.target_group["port"]
+  #protocol    = "HTTP"
+  protocol    = "TCP"
   target_type = "ip"
   vpc_id      = var.vpc_id
   health_check {
