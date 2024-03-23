@@ -32,10 +32,9 @@ locals {
 
     }
   ]
-  alb = {
+  lb = {
     name = "squid"
-    #type = "network"
-    type = "application"
+
   }
 
 }
@@ -157,17 +156,27 @@ module "squid_cluster" {
 
 }
 
-module "squid_alb" {
+/*module "squid_lb" {
   source     = "./modules/alb"
   vpc_id     = module.network.vpc_id
   subnet_ids = module.network.access_subnet_ids
-  alb        = local.alb
+  lb        = local.lb
+  target_group = {
+    name = "squid"
+    port = 3128
+  }
+}*/
+
+module "squid_lb" {
+  source     = "./modules/nlb"
+  vpc_id     = module.network.vpc_id
+  subnet_ids = module.network.access_subnet_ids
+  lb         = local.lb
   target_group = {
     name = "squid"
     port = 3128
   }
 }
-
 module "squid_service" {
   source           = "./modules/ecs-service"
   ecs_service_name = "squid"
@@ -178,8 +187,8 @@ module "squid_service" {
   load_balancer = {
     container_name    = "squid"
     container_port    = 3128
-    target_group_arn  = module.squid_alb.target_group_arn
-    security_group_id = module.squid_alb.security_group_id
+    target_group_arn  = module.squid_lb.target_group_arn
+    security_group_id = module.squid_lb.security_group_id
 
   }
 }

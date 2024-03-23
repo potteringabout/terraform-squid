@@ -1,6 +1,6 @@
 resource "aws_security_group" "alb" {
-  name        = "allow_tls"
-  description = "ALB connectivity"
+  name        = "nlb"
+  description = "NLB connectivity"
   vpc_id      = var.vpc_id
 
 }
@@ -10,7 +10,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_https" {
   security_group_id = aws_security_group.alb.id
   cidr_ipv4         = "0.0.0.0/0"
   from_port         = 80
-  ip_protocol       = "http"
+  ip_protocol       = "tcp"
   to_port           = 80
   description       = "Allow ingress traffic to port 80"
 }
@@ -30,7 +30,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_3128" {
 #################################################################################################
 
 #Defining the Application Load Balancer
-resource "aws_alb" "application_load_balancer" {
+resource "aws_lb" "load_balancer" {
   #checkov:skip=CKV_AWS_152: "Ensure that Load Balancer (Network/Gateway) has cross-zone load balancing enabled"
   #checkov:skip=CKV_AWS_150: "Ensure that Load Balancer has deletion protection enabled"
   #checkov:skip=CKV_AWS_91: "Ensure the ELBv2 (Application/Network) has access logging enabled"
@@ -39,7 +39,7 @@ resource "aws_alb" "application_load_balancer" {
   #checkov:skip=CKV2_AWS_28: "Ensure public facing ALB are protected by WAF"
   name               = var.lb["name"]
   internal           = false
-  load_balancer_type = "application"
+  load_balancer_type = "network"
   subnets            = var.subnet_ids
   security_groups    = [aws_security_group.alb.id]
 }
@@ -69,9 +69,9 @@ resource "aws_lb_target_group" "target_group" {
 resource "aws_lb_listener" "listener" {
   #checkov:skip=CKV_AWS_2: "Ensure ALB protocol is HTTPS"
   #checkov:skip=CKV_AWS_103: "Ensure that load balancer is using at least TLS 1.2"
-  load_balancer_arn = aws_alb.application_load_balancer.arn
+  load_balancer_arn = aws_alb.load_balancer.arn
   port              = "80"
-  protocol          = "HTTP"
+  protocol          = "TCP"
 
   default_action {
     type             = "forward"
