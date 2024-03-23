@@ -69,7 +69,7 @@ resource "aws_lb_target_group" "target_group" {
 resource "aws_lb_listener" "listener" {
   #checkov:skip=CKV_AWS_2: "Ensure ALB protocol is HTTPS"
   #checkov:skip=CKV_AWS_103: "Ensure that load balancer is using at least TLS 1.2"
-  load_balancer_arn = aws_alb.load_balancer.arn
+  load_balancer_arn = aws_lb.load_balancer.arn
   port              = "80"
   protocol          = "TCP"
 

@@ -30,7 +30,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_3128" {
 #################################################################################################
 
 #Defining the Application Load Balancer
-resource "aws_alb" "application_load_balancer" {
+resource "aws_alb" "load_balancer" {
   #checkov:skip=CKV_AWS_152: "Ensure that Load Balancer (Network/Gateway) has cross-zone load balancing enabled"
   #checkov:skip=CKV_AWS_150: "Ensure that Load Balancer has deletion protection enabled"
   #checkov:skip=CKV_AWS_91: "Ensure the ELBv2 (Application/Network) has access logging enabled"
@@ -69,7 +69,7 @@ resource "aws_lb_target_group" "target_group" {
 resource "aws_lb_listener" "listener" {
   #checkov:skip=CKV_AWS_2: "Ensure ALB protocol is HTTPS"
   #checkov:skip=CKV_AWS_103: "Ensure that load balancer is using at least TLS 1.2"
-  load_balancer_arn = aws_alb.application_load_balancer.arn
+  load_balancer_arn = aws_lb.load_balancer.arn
   port              = "80"
   protocol          = "HTTP"
 
