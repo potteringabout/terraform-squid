@@ -13,6 +13,9 @@ inputs:
   AWS_REGION:
     description: region
     required: true
+  AWS_DEPLOYMENT_REGION:
+    description: deployment_region
+    required: true
   TF_STATE_BUCKET:
     description: "AWS S3 bucket for Terraform state"
     required: true
@@ -25,6 +28,9 @@ inputs:
     default: latest
   IDENTITY_ROLE:
     description: "Role for Aws"
+    required: true
+  INGRESS_IPS:
+    description: ingress ips
     required: true
 
 outputs:
@@ -57,7 +63,7 @@ runs:
         terraform init \
           -backend-config="region=${{ inputs.AWS_REGION }}" \
           -backend-config="bucket=${{ inputs.TF_STATE_BUCKET }}" \
-          -backend-config="key=${{ github.repository }}/${{ inputs.ENVIRONMENT_NAME }}/${{ inputs.AWS_REGION }}/terraform.tfstate" \
+          -backend-config="key=${{ github.repository }}/${{ inputs.ENVIRONMENT_NAME }}/${{ inputs.AWS_DEPLOYMENT_REGION }}/terraform.tfstate" \
           -backend-config="dynamodb_table=${{ inputs.TF_DYNAMO_TABLE }}" \
           -backend-config="encrypt=true"
       shell: bash
@@ -77,5 +83,5 @@ runs:
     # Plan changes to environment
     - name: Terraform Plan
       id: plan
-      run: terraform destroy -var-file="./variables/input.tfvars.json" -var "deployment_repo=${{ github.repositoryUrl }}" -no-color -auto-approve
+      run: terraform destroy -var-file="./variables/input.tfvars.json" -var "deployment_repo=${{ github.repositoryUrl }}" -var "ingress_ips=${{ inputs.INGRESS_IPS }}" -var "aws_deployment_region=${{ inputs.AWS_DEPLOYMENT_REGION }}" -no-color -auto-approve
       shell: bash

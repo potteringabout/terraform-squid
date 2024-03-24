@@ -1,28 +1,16 @@
 name: "Destroy"
 on:
-  workflow_call:
-    inputs:
-      ENVIRONMENT_NAME:
-        description: "Environment Name"
-        required: true
-        type: string
-      ROLE_DURATION_SECONDS:
-        description: "Role duration"
-        required: false
-        type: number
-      ROLE_SESSION_NAME:
-        description: "Role session name"
-        required: false
-        type: string
-        default: ghauto
-
   workflow_dispatch:
     #checkov:skip=CKV_GHA_7:Deliberately added input parameters for specfic deployments
     inputs:
       ENVIRONMENT_NAME:
         description: "Environment where terraform workflows will be deployed to"
         required: true
-        type: string
+        type: environment
+      INGRESS_IPS:
+        description: "The ingress IP ( IPs - comma separated ) to allow connectivity from ( Eg. 1.2.3.4/32)"
+        required: true
+        type: environment
       ROLE_DURATION_SECONDS:
         description: "Role duration"
         required: false
@@ -64,9 +52,11 @@ jobs:
         with:
           ENVIRONMENT_NAME: ${{ inputs.ENVIRONMENT_NAME }}
           AWS_REGION: ${{ vars.AWS_REGION }}
+          AWS_DEPLOYMENT_REGION: ${{ vars.AWS_DEPLOYMENT_REGION }}
           ROLE_DURATION_SECONDS: ${{ inputs.ROLE_DURATION_SECONDS }}
           ROLE_SESSION_NAME: "${{ inputs.ROLE_SESSION_NAME }}-${{ inputs.ENVIRONMENT_NAME }}"
           TF_STATE_BUCKET: ${{ vars.TF_STATE_BUCKET }}
           TF_DYNAMO_TABLE: ${{ vars.TF_DYNAMO_TABLE }}
           TF_VERSION: ${{ vars.TF_VERSION }}
           IDENTITY_ROLE: ${{ secrets.IDENTITY_ROLE }}
+          INGRESS_IPS: ${{ inputs.INGRESS_IPS }}

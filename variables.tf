@@ -10,6 +10,10 @@ variable "aws_region" {
   type    = string
 }
 
+variable "aws_deployment_region" {
+  type = string
+}
+
 // Tags - https://allwynuk.atlassian.net/wiki/spaces/DevOps/pages/135758056/Tagging
 variable "account" {
   description = "Account name abbreviation"

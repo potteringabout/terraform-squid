@@ -73,6 +73,7 @@ jobs:
           ROLE_SESSION_NAME: "${{ inputs.ROLE_SESSION_NAME }}-${{ inputs.ENVIRONMENT_NAME }}"
           TF_VERSION: ${{ vars.TF_VERSION }}
           AWS_REGION: ${{ vars.AWS_REGION }}
+          AWS_DEPLOYMENT_REGION: ${{ vars.AWS_DEPLOYMENT_REGION }}
           TF_STATE_BUCKET: ${{ vars.TF_STATE_BUCKET }}
           TF_DYNAMO_TABLE: ${{ vars.TF_DYNAMO_TABLE }}
           IDENTITY_ROLE: "${{ secrets.IDENTITY_ROLE }}"
