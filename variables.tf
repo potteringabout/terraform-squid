@@ -96,3 +96,7 @@ variable "egress" {
   type    = bool
   default = true
 }
+
+variable "ingress_ips" {
+  type = string
+}

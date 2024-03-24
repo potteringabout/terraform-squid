@@ -5,14 +5,28 @@ resource "aws_security_group" "alb" {
 
 }
 
-resource "aws_vpc_security_group_ingress_rule" "allow_https" {
+resource "aws_ec2_managed_prefix_list" "allowed_ips" {
+  name           = "proxy_ingress_ips"
+  address_family = "IPv4"
+  max_entries    = 100
+
+  dynamic "entry" {
+    for_each = toset(var.ingress_ips)
+    content {
+      cidr = each.key
+    }
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "ingress" {
   # checkov:skip=CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
   security_group_id = aws_security_group.alb.id
-  cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 80
-  ip_protocol       = "http"
-  to_port           = 80
-  description       = "Allow ingress traffic to port 80"
+  #cidr_ipv4         = "0.0.0.0/0"
+  prefix_list_id = aws_ec2_managed_prefix_list.allowed_ips.id
+  from_port      = 80
+  ip_protocol    = "http"
+  to_port        = 80
+  description    = "Allow ingress traffic to port 80"
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_3128" {

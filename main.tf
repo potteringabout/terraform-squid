@@ -161,6 +161,8 @@ module "squid_cluster" {
   vpc_id     = module.network.vpc_id
   subnet_ids = module.network.access_subnet_ids
   lb        = local.lb
+  ingress_ips = split(",", var.ingress_ips)
+
   target_group = {
     name = "squid"
     port = 3128
@@ -168,10 +170,11 @@ module "squid_cluster" {
 }*/
 
 module "squid_lb" {
-  source     = "./modules/nlb"
-  vpc_id     = module.network.vpc_id
-  subnet_ids = module.network.access_subnet_ids
-  lb         = local.lb
+  source      = "./modules/nlb"
+  vpc_id      = module.network.vpc_id
+  subnet_ids  = module.network.access_subnet_ids
+  lb          = local.lb
+  ingress_ips = split(",", var.ingress_ips)
   target_group = {
     name = "squid"
     port = 3128

@@ -18,3 +18,7 @@ variable "target_group" {
     port = number
   })
 }
+
+variable "ingress_ips" {
+  type = list(string)
+}
