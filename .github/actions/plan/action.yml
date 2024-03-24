@@ -67,7 +67,6 @@ runs:
           -backend-config="key=${{ github.repository }}/${{ inputs.ENVIRONMENT_NAME }}/${{ inputs.AWS_DEPLOYMENT_REGION }}/terraform.tfstate" \
           -backend-config="dynamodb_table=${{ inputs.TF_DYNAMO_TABLE }}" \
           -backend-config="encrypt=true"
-          -var "aws_deployment_region=${{ inputs.AWS_DEPLOYMENT_REGION }}"
       shell: bash
 
     # Validate terraform
