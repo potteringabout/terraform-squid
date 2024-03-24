@@ -48,7 +48,7 @@ module "network" {
   }
 }
 
-module "squid_ecr" {
+/*module "squid_ecr" {
   source   = "./modules/ecr"
   ecr_name = "squid"
   kms_key  = aws_kms_key.key.arn
@@ -64,7 +64,7 @@ resource "aws_kms_key" "key" {
   deletion_window_in_days = 10
   enable_key_rotation     = true
   provider                = aws.deployment
-}
+}*/
 
 data "aws_iam_policy_document" "ecs_assume_role_policy" {
   statement {

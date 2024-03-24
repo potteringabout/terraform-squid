@@ -25,7 +25,6 @@ https://github.com/Allwyn-UK/plat-tf-template.git
 |------|--------|---------|
 | <a name="module_network"></a> [network](#module\_network) | ./modules/vpc | n/a |
 | <a name="module_squid_cluster"></a> [squid\_cluster](#module\_squid\_cluster) | ./modules/ecs-cluster | n/a |
-| <a name="module_squid_ecr"></a> [squid\_ecr](#module\_squid\_ecr) | ./modules/ecr | n/a |
 | <a name="module_squid_lb"></a> [squid\_lb](#module\_squid\_lb) | ./modules/nlb | n/a |
 | <a name="module_squid_service"></a> [squid\_service](#module\_squid\_service) | ./modules/ecs-service | n/a |
 | <a name="module_squid_task"></a> [squid\_task](#module\_squid\_task) | ./modules/ecs-task | n/a |
@@ -38,7 +37,6 @@ https://github.com/Allwyn-UK/plat-tf-template.git
 | [aws_iam_role.squid_task](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy_attachment.squid_execution_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_kms_key.ecs_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) | resource |
-| [aws_kms_key.key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) | resource |
 | [aws_kms_key_policy.ecs_key_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key_policy) | resource |
 | [aws_iam_policy_document.ecs_assume_role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.ecs_task_assume_role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
