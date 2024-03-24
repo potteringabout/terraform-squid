@@ -11,6 +11,7 @@ inputs:
     description: "Role session name"
     required: false
   AWS_REGION:
+    default: eu-west-2
     description: region
     required: true
   AWS_DEPLOYMENT_REGION:
