@@ -124,6 +124,7 @@ resource "aws_kms_key" "ecs_key" {
   description             = "ECS Key"
   deletion_window_in_days = 10
   enable_key_rotation     = true
+  provider                = aws.deployment
 }
 
 resource "aws_kms_key_policy" "ecs_key_policy" {
