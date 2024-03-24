@@ -36,7 +36,7 @@ provider "aws" {
 
 provider "aws" {
   alias  = "deployment"
-  region = var.aws_deployment_region
+  region = var.deploy_region
 
   assume_role {
     role_arn = var.deployment_role_arn

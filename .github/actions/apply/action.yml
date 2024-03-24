@@ -7,9 +7,6 @@ inputs:
   AWS_REGION:
     description: "AWS region"
     required: true
-  AWS_DEPLOYMENT_REGION:
-    description: deployment_region
-    required: true
   ROLE_DURATION_SECONDS:
     description: "Role duration"
     required: false
@@ -59,7 +56,7 @@ runs:
         terraform init \
           -backend-config="region=${{ inputs.AWS_REGION }}" \
           -backend-config="bucket=${{ inputs.TF_STATE_BUCKET }}" \
-          -backend-config="key=${{ github.repository }}/${{ inputs.ENVIRONMENT_NAME }}/${{ inputs.AWS_DEPLOYMENT_REGION }}/terraform.tfstate" \
+          -backend-config="key=${{ github.repository }}/${{ inputs.ENVIRONMENT_NAME }}/terraform.tfstate" \
           -backend-config="dynamodb_table=${{ inputs.TF_DYNAMO_TABLE }}" \
           -backend-config="encrypt=true"
       shell: bash
@@ -79,5 +76,5 @@ runs:
     # Apply changes to environment
     - name: Terraform Apply
       id: apply
-      run: terraform apply -var-file="./variables/input.tfvars.json" -var "deployment_repo=${{ github.repositoryUrl }}" -var "ingress_ips=${{ inputs.INGRESS_IPS }}" -var "aws_deployment_region=${{ inputs.AWS_DEPLOYMENT_REGION }}" -auto-approve
+      run: terraform apply -var-file="./variables/input.tfvars.json" -var "deployment_repo=${{ github.repositoryUrl }}" -var "ingress_ips=${{ inputs.INGRESS_IPS }}" -auto-approve
       shell: bash

@@ -49,9 +49,9 @@ https://github.com/Allwyn-UK/plat-tf-template.git
 |------|-------------|------|---------|:--------:|
 | <a name="input_account"></a> [account](#input\_account) | Account name abbreviation | `string` | `"prod"` | no |
 | <a name="input_account_full"></a> [account\_full](#input\_account\_full) | Account name | `string` | `"Production Account"` | no |
-| <a name="input_aws_deployment_region"></a> [aws\_deployment\_region](#input\_aws\_deployment\_region) | n/a | `string` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | n/a | `string` | `"eu-west-2"` | no |
 | <a name="input_costcentre"></a> [costcentre](#input\_costcentre) | The cost centre to charge the asset to | `string` | `"123"` | no |
+| <a name="input_deploy_region"></a> [deploy\_region](#input\_deploy\_region) | n/a | `string` | n/a | yes |
 | <a name="input_deployment_mode"></a> [deployment\_mode](#input\_deployment\_mode) | How the resource was deployed | `string` | `"auto"` | no |
 | <a name="input_deployment_repo"></a> [deployment\_repo](#input\_deployment\_repo) | The URL of the deployment repo | `string` | n/a | yes |
 | <a name="input_deployment_role_arn"></a> [deployment\_role\_arn](#input\_deployment\_role\_arn) | The ARN of role the AWS provider should assume | `string` | `""` | no |

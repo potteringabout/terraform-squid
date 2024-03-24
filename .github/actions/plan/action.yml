@@ -14,9 +14,6 @@ inputs:
     default: eu-west-2
     description: region
     required: true
-  AWS_DEPLOYMENT_REGION:
-    description: deployment region
-    required: true
   TF_STATE_BUCKET:
     description: "AWS S3 bucket for Terraform state"
     required: true
@@ -64,7 +61,7 @@ runs:
         terraform init \
           -backend-config="region=${{ inputs.AWS_REGION }}" \
           -backend-config="bucket=${{ inputs.TF_STATE_BUCKET }}" \
-          -backend-config="key=${{ github.repository }}/${{ inputs.ENVIRONMENT_NAME }}/${{ inputs.AWS_DEPLOYMENT_REGION }}/terraform.tfstate" \
+          -backend-config="key=${{ github.repository }}/${{ inputs.ENVIRONMENT_NAME }}/terraform.tfstate" \
           -backend-config="dynamodb_table=${{ inputs.TF_DYNAMO_TABLE }}" \
           -backend-config="encrypt=true"
       shell: bash
@@ -84,7 +81,7 @@ runs:
     # Plan changes to environment
     - name: Terraform Plan
       id: plan
-      run: terraform plan -var-file="./variables/input.tfvars.json" -var "deployment_repo=${{ github.repositoryUrl }}" -var "ingress_ips=${{ inputs.INGRESS_IPS }}" -var "aws_deployment_region=${{ inputs.AWS_DEPLOYMENT_REGION }}" -detailed-exitcode -no-color
+      run: terraform plan -var-file="./variables/input.tfvars.json" -var "deployment_repo=${{ github.repositoryUrl }}" -var "ingress_ips=${{ inputs.INGRESS_IPS }}" -detailed-exitcode -no-color
       shell: bash
       continue-on-error: true
 

@@ -10,7 +10,7 @@ variable "aws_region" {
   type    = string
 }
 
-variable "aws_deployment_region" {
+variable "deploy_region" {
   type = string
 }
 

@@ -17,10 +17,6 @@ on:
         required: false
         type: string
         default: ghmanual
-      AWS_DEPLOYMENT_REGION:
-        description: "The region to deploy to"
-        required: true
-        type: string
       INGRESS_IPS:
         description: "The ingress IP ( IPs - comma separated ) to allow connectivity from ( Eg. 1.2.3.4/32)"
         required: true
@@ -65,7 +61,6 @@ jobs:
           ROLE_SESSION_NAME: "${{ inputs.ROLE_SESSION_NAME }}-${{ inputs.ENVIRONMENT_NAME }}"
           TF_VERSION: ${{ vars.TF_VERSION }}
           AWS_REGION: ${{ vars.AWS_REGION }}
-          AWS_DEPLOYMENT_REGION: ${{ vars.AWS_DEPLOYMENT_REGION }}
           TF_STATE_BUCKET: ${{ vars.TF_STATE_BUCKET }}
           TF_DYNAMO_TABLE: ${{ vars.TF_DYNAMO_TABLE }}
           IDENTITY_ROLE: "${{ secrets.IDENTITY_ROLE }}"
