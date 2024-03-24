@@ -8,12 +8,12 @@ resource "aws_security_group" "alb" {
 resource "aws_ec2_managed_prefix_list" "allowed_ips" {
   name           = "proxy_ingress_ips"
   address_family = "IPv4"
-  max_entries    = 100
+  max_entries    = 10
 
   dynamic "entry" {
     for_each = toset(var.ingress_ips)
     content {
-      cidr = each.key
+      cidr = entry.value
     }
   }
 }
