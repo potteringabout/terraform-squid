@@ -116,7 +116,3 @@ variable "ingress_ips" {
 variable "zone" {
   type = string
 }
-
-variable "dns_name" {
-  type = string
-}
