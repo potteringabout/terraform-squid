@@ -103,5 +103,5 @@ variable "egress" {
 
 variable "ingress_ips" {
   type    = string
-  default = ""
+  default = "0.0.0.0/32"
 }

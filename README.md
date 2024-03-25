@@ -58,7 +58,7 @@ https://github.com/Allwyn-UK/plat-tf-template.git
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name abbreviation in lower case | `string` | `"prod"` | no |
 | <a name="input_environment_full"></a> [environment\_full](#input\_environment\_full) | The environment name in full | `string` | `"Production environment for shared services"` | no |
 | <a name="input_ingress"></a> [ingress](#input\_ingress) | n/a | `bool` | `true` | no |
-| <a name="input_ingress_ips"></a> [ingress\_ips](#input\_ingress\_ips) | n/a | `string` | `""` | no |
+| <a name="input_ingress_ips"></a> [ingress\_ips](#input\_ingress\_ips) | n/a | `string` | `"0.0.0.0/32"` | no |
 | <a name="input_owner"></a> [owner](#input\_owner) | The individual or team owner of the asset | `string` | `"Platform Engineering"` | no |
 | <a name="input_project"></a> [project](#input\_project) | Project abbreviation in lower case | `string` | `"ss"` | no |
 | <a name="input_project_full"></a> [project\_full](#input\_project\_full) | The project name in full | `string` | `"Shared Services"` | no |
