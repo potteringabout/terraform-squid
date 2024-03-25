@@ -7,10 +7,6 @@ on:
         description: "Environment where terraform workflows will be deployed to"
         required: true
         type: environment
-      INGRESS_IPS:
-        description: "The ingress IP ( IPs - comma separated ) to allow connectivity from ( Eg. 1.2.3.4/32)"
-        required: true
-        type: string
       ROLE_DURATION_SECONDS:
         description: "Role duration"
         required: false
@@ -58,4 +54,3 @@ jobs:
           TF_DYNAMO_TABLE: ${{ vars.TF_DYNAMO_TABLE }}
           TF_VERSION: ${{ vars.TF_VERSION }}
           IDENTITY_ROLE: ${{ secrets.IDENTITY_ROLE }}
-          INGRESS_IPS: ${{ inputs.INGRESS_IPS }}
