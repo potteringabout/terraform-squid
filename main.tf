@@ -43,6 +43,7 @@ module "network" {
   source  = "./modules/vpc"
   egress  = var.egress
   ingress = var.ingress
+  region  = var.deploy_region
   providers = {
     aws = aws.deployment
   }
