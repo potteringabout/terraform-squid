@@ -1,9 +1,16 @@
 // Mandatory vars
 variable "deployment_role_arn" {
-  description = "The ARN of role the AWS provider should assume"
+  description = "The ARN of role to be assumed for deployment tasks"
   default     = ""
   type        = string
 }
+
+variable "dns_role_arn" {
+  description = "The ARN of role to be assumed for DNS updates"
+  default     = ""
+  type        = string
+}
+
 
 variable "aws_region" {
   default = "eu-west-2"

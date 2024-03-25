@@ -53,8 +53,9 @@ https://github.com/Allwyn-UK/plat-tf-template.git
 | <a name="input_deploy_region"></a> [deploy\_region](#input\_deploy\_region) | n/a | `string` | n/a | yes |
 | <a name="input_deployment_mode"></a> [deployment\_mode](#input\_deployment\_mode) | How the resource was deployed | `string` | `"auto"` | no |
 | <a name="input_deployment_repo"></a> [deployment\_repo](#input\_deployment\_repo) | The URL of the deployment repo | `string` | n/a | yes |
-| <a name="input_deployment_role_arn"></a> [deployment\_role\_arn](#input\_deployment\_role\_arn) | The ARN of role the AWS provider should assume | `string` | `""` | no |
+| <a name="input_deployment_role_arn"></a> [deployment\_role\_arn](#input\_deployment\_role\_arn) | The ARN of role to be assumed for deployment tasks | `string` | `""` | no |
 | <a name="input_dns_name"></a> [dns\_name](#input\_dns\_name) | n/a | `string` | n/a | yes |
+| <a name="input_dns_role_arn"></a> [dns\_role\_arn](#input\_dns\_role\_arn) | The ARN of role to be assumed for DNS updates | `string` | `""` | no |
 | <a name="input_egress"></a> [egress](#input\_egress) | n/a | `bool` | `true` | no |
 | <a name="input_email"></a> [email](#input\_email) | Email contact for the asset owner | `string` | `"platformengineering@allwyn.co.uk"` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name abbreviation in lower case | `string` | `"prod"` | no |
