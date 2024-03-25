@@ -222,7 +222,7 @@ module "squid_service" {
 
 module "proxy_address" {
   source  = "./modules/route53"
-  name    = var.dns_name
+  name    = "${var.dns_name}${var.environment}proxy"
   zone    = var.zone
   address = module.squid_lb.lb_address
 
