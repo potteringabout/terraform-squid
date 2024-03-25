@@ -80,5 +80,5 @@ runs:
     # Plan changes to environment
     - name: Terraform Plan
       id: plan
-      run: terraform destroy -var-file="./variables/input.tfvars.json" -var "deployment_repo=${{ github.repositoryUrl }}" -var "ingress_ips=${{ inputs.INGRESS_IPS }}" -var "aws_deployment_region=${{ inputs.AWS_DEPLOYMENT_REGION }}" -no-color -auto-approve
+      run: terraform destroy -var-file="./variables/input.tfvars.json" -var "deployment_repo=${{ github.repositoryUrl }}" -var "ingress_ips=${{ inputs.INGRESS_IPS }}" -no-color -auto-approve
       shell: bash
