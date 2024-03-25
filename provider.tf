@@ -58,3 +58,28 @@ provider "aws" {
     }
   }
 }
+
+provider "aws" {
+  alias  = "dns"
+  region = var.aws_region
+
+  assume_role {
+    role_arn = var.dns_role_arn
+  }
+
+  default_tags {
+    tags = {
+      account          = var.account
+      account_full     = var.account_full
+      costcentre       = var.costcentre
+      deployment_mode  = var.deployment_mode
+      deployment_repo  = var.deployment_repo
+      email            = var.email
+      environment      = var.environment
+      environment_full = var.environment_full
+      owner            = var.owner
+      project          = var.project
+      project_full     = var.project_full
+    }
+  }
+}

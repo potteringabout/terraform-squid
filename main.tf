@@ -200,6 +200,7 @@ module "squid_lb" {
     aws = aws.deployment
   }
 }
+
 module "squid_service" {
   source           = "./modules/ecs-service"
   ecs_service_name = "squid"
@@ -216,5 +217,16 @@ module "squid_service" {
   }
   providers = {
     aws = aws.deployment
+  }
+}
+
+module "proxy_address" {
+  source  = "./modules/route53"
+  name    = var.dns_name
+  zone    = var.zone
+  address = module.squid_lb.lb_address
+
+  providers = {
+    aws = aws.dns
   }
 }

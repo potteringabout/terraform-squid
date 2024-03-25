@@ -105,3 +105,11 @@ variable "ingress_ips" {
   type    = string
   default = "0.0.0.0/32"
 }
+
+variable "zone" {
+  type = string
+}
+
+variable "dns_name" {
+  type = string
+}
