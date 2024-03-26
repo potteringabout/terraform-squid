@@ -233,9 +233,6 @@ module "proxy_address" {
 
 module "reminder" {
   source     = "./modules/sns"
+  name       = "${var.environment}proxy"
   sms_number = var.sms_number
-
-  providers = {
-    aws = aws.deployment
-  }
 }
