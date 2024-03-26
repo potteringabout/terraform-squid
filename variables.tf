@@ -116,3 +116,7 @@ variable "ingress_ips" {
 variable "zone" {
   type = string
 }
+
+variable "sms_number" {
+  type = string
+}

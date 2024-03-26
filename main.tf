@@ -230,3 +230,12 @@ module "proxy_address" {
     aws = aws.dns
   }
 }
+
+module "reminder" {
+  source     = "./modules/sns"
+  sms_number = var.sms_number
+
+  providers = {
+    aws = aws.deployment
+  }
+}

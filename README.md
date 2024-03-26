@@ -25,6 +25,7 @@ https://github.com/Allwyn-UK/plat-tf-template.git
 |------|--------|---------|
 | <a name="module_network"></a> [network](#module\_network) | ./modules/vpc | n/a |
 | <a name="module_proxy_address"></a> [proxy\_address](#module\_proxy\_address) | ./modules/route53 | n/a |
+| <a name="module_reminder"></a> [reminder](#module\_reminder) | ./modules/sns | n/a |
 | <a name="module_squid_cluster"></a> [squid\_cluster](#module\_squid\_cluster) | ./modules/ecs-cluster | n/a |
 | <a name="module_squid_lb"></a> [squid\_lb](#module\_squid\_lb) | ./modules/nlb | n/a |
 | <a name="module_squid_service"></a> [squid\_service](#module\_squid\_service) | ./modules/ecs-service | n/a |
@@ -64,6 +65,7 @@ https://github.com/Allwyn-UK/plat-tf-template.git
 | <a name="input_owner"></a> [owner](#input\_owner) | The individual or team owner of the asset | `string` | `"Platform Engineering"` | no |
 | <a name="input_project"></a> [project](#input\_project) | Project abbreviation in lower case | `string` | `"ss"` | no |
 | <a name="input_project_full"></a> [project\_full](#input\_project\_full) | The project name in full | `string` | `"Shared Services"` | no |
+| <a name="input_sms_number"></a> [sms\_number](#input\_sms\_number) | n/a | `string` | n/a | yes |
 | <a name="input_squid_container_image"></a> [squid\_container\_image](#input\_squid\_container\_image) | The Squid container to use | `string` | n/a | yes |
 | <a name="input_squid_service_name"></a> [squid\_service\_name](#input\_squid\_service\_name) | The Squid service name | `string` | n/a | yes |
 | <a name="input_zone"></a> [zone](#input\_zone) | n/a | `string` | n/a | yes |
